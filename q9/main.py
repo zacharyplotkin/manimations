@@ -19,7 +19,7 @@ class QuestionNinePartA(Scene):
                 row = []
                 for c in set_s:
                     for d in set_s:
-                        if a+b == c+d:  # evaluates the relation
+                        if a + b == c + d:  # evaluates the relation
                             row.append(1)  # if true, pop a one in there
                         else:
                             row.append(0)  # if not true, pop a zero in there
@@ -30,8 +30,10 @@ class QuestionNinePartA(Scene):
         # so we're stuck with some rather inelegant (and repeated) code. Sorry about that.
 
         m = IntegerMatrix(matrix)
-        text = Tex(r"This matrix is the adjacency matrix composed of the relation defined on $S \times S$ "
-                   r"(where $S={1, 2, 3, 4, 5}$) as follows: $\newline$ $(a,b)R(c,d)$ if and only if $a+b=c+d$")
+        text = Tex(
+            r"This matrix is the adjacency matrix composed of the relation defined on $S \times S$ "
+            r"(where $S={1, 2, 3, 4, 5}$) as follows: $\newline$ $(a,b)R(c,d)$ if and only if $a+b=c+d$"
+        )
         group = VGroup(m, text)
         group.arrange(DOWN)
         group.width = config["frame_width"] - 2 * LARGE_BUFF
@@ -48,8 +50,10 @@ class QuestionNinePartA(Scene):
         # but because the matrix was so big, it was far more difficult than originally planned.
 
         m_transpose = IntegerMatrix(np.transpose(np.array(matrix)))
-        text = Tex(r"This is the transpose of that matrix. Notice how it is identical, proving symmetry. Ones across"
-                   r"the diagonal proves reflexivity.")
+        text = Tex(
+            r"This is the transpose of that matrix. Notice how it is identical, proving symmetry. Ones across "
+            r"the diagonal proves reflexivity."
+        )
 
         group = VGroup(m_transpose, text)
         group.arrange(DOWN)
@@ -70,10 +74,12 @@ class QuestionNinePartA(Scene):
         np_square = np.square(m_array)
         m_square = IntegerMatrix(np_square)
 
-        text = Tex(r"Now, we square the matrix, so we can prove transitivity. If there are non-zero entries in the"
-                   r"square of the matrix that were not there in the original, it is not transitive. Given that this"
-                   r"is not the case, we can thus safely conclude that this relation is an equivalence relation, as it"
-                   r"is reflexive, symmetric, and transitive.")
+        text = Tex(
+            r"Now, we square the matrix, so we can prove transitivity. If there are non-zero entries in the "
+            r"square of the matrix that were not there in the original, it is not transitive. Given that this "
+            r"is not the case, we can thus safely conclude that this relation is an equivalence relation, as it "
+            r"is reflexive, symmetric, and transitive."
+        )
 
         group = VGroup(m_square, text)
         group.arrange(DOWN)
