@@ -14,6 +14,18 @@ class QuestionNinePartA(Scene):
         # so please excuse the messiness.
         set_s = [1, 2, 3, 4, 5]
         matrix = []
+        partition_set = []
+
+        # this creates our (empty) partition set
+        for x in range(9):
+            partition_set.append([])
+
+        for a in set_s:
+            for b in set_s:
+                n = a + b
+                # This caused me a lot of grief, I forgot that indices in Python start at 0
+                partition_set[n - 2].append((a, b))
+
         for a in set_s:
             for b in set_s:
                 row = []
@@ -91,3 +103,18 @@ class QuestionNinePartA(Scene):
         self.wait(10)
         self.play(Unwrite(text))
         self.play(Uncreate(m_square))
+
+        text = Tex(
+            r"To take the partition with respect to $S \times S$, we look at all the entries "
+            r"where the evaluation is true. Our partition is thus: $\newline$ "
+            + str(partition_set)
+        )
+
+        group = VGroup(text)
+        group.arrange(DOWN)
+        group.width = config["frame_width"] - 2 * LARGE_BUFF
+        group.height = config["frame_height"] - 2 * LARGE_BUFF
+
+        self.play(Write(text))
+        self.wait(10)
+        self.play(Unwrite(text))
