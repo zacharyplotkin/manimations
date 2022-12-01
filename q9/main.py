@@ -105,8 +105,8 @@ class QuestionNinePartA(Scene):
         self.play(Uncreate(m_square))
 
         text = Tex(
-            r"To take the partition with respect to $S \times S$, we look at all the entries "
-            r"where the evaluation is true. Our partition is thus: $\newline$ "
+            r"To take the partition with respect to $S \times S$, we group all the entries "
+            r"where the evaluation is equal to each other. Our partition is thus: $\newline$ "
             + str(partition_set)
         )
 
@@ -114,6 +114,11 @@ class QuestionNinePartA(Scene):
         group.arrange(DOWN)
         group.width = config["frame_width"] - 2 * LARGE_BUFF
         group.height = config["frame_height"] - 2 * LARGE_BUFF
+
+        # This is really, really hacky. I couldn't get font_size to work, so I had to just
+        # attempt to get as much into the frame as possible. No idea why it's like this.
+        text.height = group.height - 3 * LARGE_BUFF
+        text.width = group.width - 5 * LARGE_BUFF
 
         self.play(Write(text))
         self.wait(10)
